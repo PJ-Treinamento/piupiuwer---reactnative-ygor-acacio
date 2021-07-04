@@ -11,7 +11,7 @@ export const Login = () => {
     console.log('pressed')
   }
   return(
-    <S.container>
+    <S.Container>
       {/* <PageHeader/> */}
       <S.Nav>
         <S.LogoPP source={LogoPiupiuwer}/>
@@ -39,6 +39,6 @@ export const Login = () => {
         <FontAwesome name="copyright" size={15} color="black" />
         <S.FooterText>Copyright of PoliJunior</S.FooterText>
       </S.Footer>
-    </S.container>
+    </S.Container>
   )
 }
