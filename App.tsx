@@ -1,12 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { Feed } from './src/pages/Feed';
-import { Login } from './src/pages/Login';
+import { AppStack } from './src/routes/AppStack';
 
 export default function App() {
   return (
     <>
-      <Feed/>
+      <AppStack/>
       <StatusBar/>
     </>
   );

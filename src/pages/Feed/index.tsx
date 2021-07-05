@@ -6,13 +6,12 @@ import { AntDesign } from '@expo/vector-icons';
 import { Octicons } from '@expo/vector-icons';
 import { Piu } from '../../components/Piu';
 import { ScrollView } from 'react-native';
+import { PageNav } from '../../components/PageNav';
 
 export const Feed = () => {
   return(
     <S.Container>
-      <S.Nav>
-        <S.LogoPP source={LogoPiupiuwer}/>
-      </S.Nav>
+      <PageNav/>
       <ScrollView>
         <S.Header>
           <AntDesign name="arrowleft" size={35} color="black" />
