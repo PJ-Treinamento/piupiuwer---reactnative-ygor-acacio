@@ -6,6 +6,9 @@ import { Notifications } from '../pages/Notifications/Index';
 import { ConfigPage } from '../pages/ConfigPage/Index';
 import { Feed } from '../pages/Feed';
 import { AntDesign } from '@expo/vector-icons';
+import { EvilIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
@@ -42,12 +45,12 @@ export const NavigateTabs = () => {
         name="Feed" 
         component={Feed}
         options={{
-          tabBarLabel: 'Feed',
-          // tabBarIcon: ({ color, size, focused }) => {
-            // return (
-            //   <Ionicons  name="ios-easel" size={size} color={focused ? '#8257e5': color} />
-            // );
-          // }
+          tabBarLabel: '',
+          tabBarIcon: ({ color, size, focused }) => {
+            return (
+              <MaterialCommunityIcons name="altimeter" size={24} color="black" />
+            );
+          }
         }}
       />
       <Screen 
@@ -66,24 +69,24 @@ export const NavigateTabs = () => {
         name="Notifications" 
         component={Notifications}
         options={{
-          tabBarLabel: 'Notificações',
-          // tabBarIcon: ({ color, size, focused }) => {
-          //   return (
-          //     <Ionicons  name="ios-heart" size={size} color={focused ? '#8257e5': color} />
-          //   );
-          // }
+          tabBarLabel: '',
+          tabBarIcon: ({ color, size, focused }) => {
+            return (
+              <Ionicons name="notifications" size={24} color="black" />
+            );
+          }
         }}
       />
       <Screen 
         name="ConfigPage" 
         component={ConfigPage}
         options={{
-          tabBarLabel: 'Configurações',
-        //   tabBarIcon: ({ color, size, focused }) => {
-        //     return (
-        //       <Ionicons  name="ios-heart" size={size} color={focused ? '#8257e5': color} />
-        //     );
-        //   }
+          tabBarLabel: '',
+          tabBarIcon: ({ color, size, focused }) => {
+            return (
+              <EvilIcons name="gear" size={24} color="black" />
+            );
+          }
         }}
       />
     </Navigator>

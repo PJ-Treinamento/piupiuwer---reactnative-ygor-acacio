@@ -68,6 +68,13 @@ export const Button = styled.TouchableOpacity`
   margin: -10px 0px 20px 270px;
 `;
 
+export const ButtonExit = styled.TouchableOpacity`
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  margin: -10px 0px 20px 330px;
+`;
+
 export const TextButton = styled.Text`
   font-size: 24px;
 `;

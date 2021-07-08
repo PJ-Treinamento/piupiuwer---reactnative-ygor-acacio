@@ -13,6 +13,7 @@ import Api from '../../services/Api';
 import { Context } from '../../hooks/UseAuth';
 import { IPiu } from '../../interfaces';
 import { useNavigation } from "@react-navigation/native";
+import { Ionicons } from '@expo/vector-icons';
 
 export const Feed = () => {
   const { navigate } = useNavigation();
@@ -51,9 +52,11 @@ export const Feed = () => {
       <PageNav/>
       <ScrollView>
         <S.Header>
-          <AntDesign name="arrowleft" size={35} color="black" />
+        <S.ButtonExit onPress={Logout}>
+          <Ionicons name="exit-outline" size={24} color="black" />
+        </S.ButtonExit>
 
-          <S.User>
+        <S.User>
             <S.PhotoUser source={Profile} />
             <S.UserContainer>
               <S.NameUser>{user.first_name} {user.last_name}</S.NameUser>
