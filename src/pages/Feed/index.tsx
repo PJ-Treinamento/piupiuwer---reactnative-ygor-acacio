@@ -1,14 +1,51 @@
 import React from 'react';
 import * as S from './styles';
-import LogoPiupiuwer from '../../images/logo-PP.png';
-import Perfil from '../../images/Perfil.jpeg';
+import Profile from '../../images/profile.png';
 import { AntDesign } from '@expo/vector-icons';
 import { Octicons } from '@expo/vector-icons';
 import { Piu } from '../../components/Piu';
 import { ScrollView } from 'react-native';
 import { PageNav } from '../../components/PageNav';
+import { useContext } from 'react';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import Api from '../../services/Api';
+import { Context } from '../../hooks/UseAuth';
+import { IPiu } from '../../interfaces';
+import { useNavigation } from "@react-navigation/native";
 
 export const Feed = () => {
+  const { navigate } = useNavigation();
+
+  const {Logout} = useContext(Context)
+  const {authenticated} = useContext(Context)
+  const {user, token} = authenticated
+
+  const [filter, setFilter] = useState('')
+
+  const [pius, setPius] = useState<IPiu[]>([])
+  
+  const piusFilter = pius.filter((piu) => 
+    piu.user.first_name.includes(filter))
+
+  useEffect(() =>{
+    const Data = async() =>{
+      try {
+        const response = await Api.get('/pius', {
+        headers: {authorization:`Bearer ${token}`}
+      })
+      setPius(response.data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    Data()
+  }, [token, Piu]) 
+
+  const hendleToPiuText = () => {
+    navigate("PiarText")
+  }
+
   return(
     <S.Container>
       <PageNav/>
@@ -17,49 +54,50 @@ export const Feed = () => {
           <AntDesign name="arrowleft" size={35} color="black" />
 
           <S.User>
-            <S.PhotoUser source={Perfil} />
+            <S.PhotoUser source={Profile} />
             <S.UserContainer>
-              <S.NameUser>Ygor Acacio </S.NameUser>
+              <S.NameUser>{user.first_name} {user.last_name}</S.NameUser>
 
               <S.InfoUserContainer>
                 <S.TittleUser>Username: </S.TittleUser>
-                <S.InfoUser>Ygor_acaio</S.InfoUser>
+                <S.InfoUser>{user.username}</S.InfoUser>
               </S.InfoUserContainer>
 
               <S.InfoUserContainer>
                 <S.TittleUser>Bio: </S.TittleUser>
-                <S.InfoUser>oi sou muito legal </S.InfoUser>
+                <S.InfoUser>{user.about}</S.InfoUser>
               </S.InfoUserContainer>
             
               <S.InfoUserContainer>
                 <S.TittleUser>Followes: </S.TittleUser>
-                <S.InfoUser>2</S.InfoUser>
+                <S.InfoUser>{user.followers.length}</S.InfoUser>
               </S.InfoUserContainer>
 
               <S.InfoUserContainer>
                 <S.TittleUser>Following: </S.TittleUser>
-                <S.InfoUser>0</S.InfoUser>
+                <S.InfoUser>{user.following.length}</S.InfoUser>
               </S.InfoUserContainer>  
             </S.UserContainer>
           </S.User>
 
-          <S.Search  placeholder='Filtrar'/>
+          <S.Search  
+            placeholder='Filtrar'
+            value={filter}
+            onChangeText={text => setFilter(text)}
+          />
 
-          <S.Button>
-            <Octicons name="pencil" size={24} color="black" />
+          <S.Button onPress={hendleToPiuText}>
+            <Octicons 
+              name="pencil" 
+              size={24} 
+              color="black"
+            />
             <S.TextButton>Piar ?</S.TextButton>
           </S.Button>
         </S.Header>
       
         <S.Section>
-          <Piu/>
-          <Piu/>
-          <Piu/>
-          <Piu/>
-          <Piu/>
-          <Piu/>
-          <Piu/>
-          <Piu/>
+          {piusFilter.map(piu => <Piu {...piu} key={piu.id}/>)}
         </S.Section>
       </ScrollView>
     </S.Container>

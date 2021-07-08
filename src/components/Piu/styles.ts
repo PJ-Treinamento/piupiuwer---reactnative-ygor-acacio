@@ -27,6 +27,11 @@ export const InfoProfile = styled.Text`
   font-size: 14px;
 `;
 
+export const InfoProfileDate = styled.Text`
+  font-size: 14px;
+  max-width: 50px;
+`;
+
 export const ImgProfile = styled.Image`
   border-radius: 30px;
   width: 29px;
@@ -55,4 +60,10 @@ export const PiuInterections = styled.View`
 export const InfoPiu = styled.Text`
   margin-left: -50px;
   font-size: 14px;
+`;
+
+export const Button = styled.TouchableOpacity`
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
 `;

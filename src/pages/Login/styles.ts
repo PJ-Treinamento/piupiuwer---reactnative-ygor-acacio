@@ -51,7 +51,7 @@ export const Button = styled.View`
   background-color: rgba(45, 106, 79, 1);
   border-radius: 8px;
   width: 250px;
-  height: 30;
+  height: 30px;
   align-items: center;
   justify-content: center;
   margin: -5px 0px 30px;

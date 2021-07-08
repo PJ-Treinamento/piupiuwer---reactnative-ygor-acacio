@@ -1,14 +1,21 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import * as S from './styles';
 import { RectButton } from 'react-native-gesture-handler';
 import { FontAwesome } from '@expo/vector-icons';
 import { PageNav }  from '../../components/PageNav';
 import { useNavigation } from "@react-navigation/native";
+import { Context } from '../../hooks/UseAuth';
 
 export const Login = () => {
   const { navigate } = useNavigation();
 
-  const hendleToFeed = () => {
+  const {SingIn} = useContext(Context)
+  // const [credentials, setCredentials] = useState({ email:'', password:'' })
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  
+  const hendleFormSubmit = async () => {
+    await SingIn({email:'', password:''})
     navigate("NavigateTabs")
   }
 
@@ -20,12 +27,20 @@ export const Login = () => {
           <S.LoginBox>
             <S.Title>Faça seu login</S.Title>
             <S.InputBox>
-              <S.Input  placeholder='Email:'/>
-              <S.Input placeholder='Senha:'/>
+              <S.Input  
+                value={email}
+                onChangeText={text => setEmail(text) }                 
+                placeholder='Email:'
+              />
+              <S.Input 
+                value={password}
+                onChangeText={text => setPassword(text) }                 
+                placeholder='Senha:'
+              />
             </S.InputBox>
             <S.Button>
               <RectButton
-                onPress={hendleToFeed}
+                onPress={hendleFormSubmit}
               >
                 <S.ButtonText>Entrar</S.ButtonText>
               </RectButton>

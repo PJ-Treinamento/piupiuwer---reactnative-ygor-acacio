@@ -5,6 +5,7 @@ import { Profile } from '../pages/Profile/Index';
 import { Notifications } from '../pages/Notifications/Index';
 import { ConfigPage } from '../pages/ConfigPage/Index';
 import { Feed } from '../pages/Feed';
+import { AntDesign } from '@expo/vector-icons';
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
@@ -53,12 +54,12 @@ export const NavigateTabs = () => {
         name="Profile" 
         component={Profile}
         options={{
-          tabBarLabel: 'Perfil',
-          // tabBarIcon: ({ color, size, focused }) => {
-          //   return (
-          //     <Ionicons  name="ios-heart" size={size} color={focused ? '#8257e5': color} />
-          //   );
-          // }
+          tabBarLabel: '',
+          tabBarIcon: ({ color, size, focused }) => {
+            return (
+              <AntDesign name="user" size={24} color="black" />
+            );
+          }
         }}
       />
       <Screen 
