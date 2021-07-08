@@ -6,14 +6,14 @@ import AppLoading from 'expo-app-loading';
 import { useFonts, RobotoMono_400Regular,RobotoMono_600SemiBold } from '@expo-google-fonts/roboto-mono';
 
 export default function App() {
-  let [fontsLoaded] = useFonts({
-    RobotoMono_400Regular,
-    RobotoMono_600SemiBold
-  });
+  // let [fontsLoaded] = useFonts({
+  //   RobotoMono_400Regular,
+  //   RobotoMono_600SemiBold
+  // });
 
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  }
+  // if (!fontsLoaded) {
+  //   return <AppLoading />;
+  // }
   return (
     <>
       <AuthProvider>
